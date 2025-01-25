@@ -27,11 +27,14 @@
   font-size: 1rem;
 }
 
-.btn { 
-  width: 60px;
+.buttons { 
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
+}
+
+.btn { 
+  margin-left: 10px;
 }
 
 /* Puzzle Container in the middle of the page */
@@ -212,5 +215,107 @@ body {
   80%, 99.9% {  
     margin-top: 30%;
     margin-left: 80%;
+  }
+}
+
+.loader {      
+  width: 32px;
+  height: 32px;
+  display: block;
+  border: 1px solid #FFF;
+  border-radius: 25px ;
+  position: relative;
+  box-shadow: 0px 0px #001aff inset;
+  background-color: #fff;
+  background-image: linear-gradient(#001aff 50px, transparent 0);
+  background-position: 0  20px;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+
+.loader-element {
+  position: absolute;
+  border: 2px solid #FFF;
+  border-bottom: none;
+  background: #ffffff;
+  transform: translate(80% , -225%);
+  border-radius: 2px;
+  width: 12px;
+  height: 8px;
+  box-sizing: border-box;
+}
+
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50% , -95%);
+  border: 2px solid #FFF;
+  border-bottom: none;
+  background: #fff;
+  width: 8px;
+  height: 18px;
+}
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  left: 50%;
+  transform: translateX(-125%);
+  bottom: -4px;
+  border-radius: 50%;
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  z-index: 10;
+  animation: bubbles 6s linear infinite;
+}
+
+@keyframes bubbles {
+  0% {
+    box-shadow: 
+    2px -5px rgba(0, 0, 255, 0), 
+    3px 0px rgba(0, 0, 255, 0),
+    4px -8px rgba(0, 0, 255, 0), 
+    6px 0px rgba(0, 0, 255, 0);
+  }
+  20% {
+    box-shadow: 
+    2px -10px rgba(240, 238, 238, 0), 
+    4px -5px rgba(0, 0, 255, 0),
+    5px -15px rgba(255, 255, 255, 0.5),
+    8px -2px rgba(0, 0, 255, 0);
+  }
+  40% {
+    box-shadow:
+    1px -10px rgba(255, 255, 255, 0.5),
+    4px -15px rgba(0, 0, 255, 0.4),
+    4px -30px rgba(255, 255, 255, 0.5),
+    6px -7px rgba(255, 255, 255, 0.5);
+  }
+  60% {
+    box-shadow:
+    1px -30px rgba(46, 16, 214, 0.5),
+    2px -25px rgba(255, 255, 255, 0.4),
+    5px -45px rgba(255, 255, 255, 0.5),
+    6px -12px rgba(255, 255, 255, 0.5);
+  }
+  80% {
+    box-shadow: 1px -40px rgba(0, 0, 255, 0.5),
+    2px -17px rgba(255, 255, 255, 0),
+    4px -30px rgba(0, 0, 255, 0),
+    6px -17px rgba(0, 0, 255, 0.5);
+  }
+  100% {
+    box-shadow: 2px -50px rgba(0, 0, 255, 0),
+    2px -45px rgba(0, 0, 255, 0),
+    5px -60px rgba(0, 0, 255, 0),
+    6px -45px rgba(0, 0, 255, 0);
   }
 }
