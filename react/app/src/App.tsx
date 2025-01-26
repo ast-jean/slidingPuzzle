@@ -204,7 +204,7 @@ const fetchAiSolution = async (tilesToSearch: number[]): Promise<void> => {
       <h1>3×3 Sliding Puzzle</h1>
       <div className='buttons'>
       <button className="btn" onClick={shuffleTiles}>Shuffle</button>
-      <button className="btn" onClick={handleFetchAiSolution} disabled={!isAiSolveEnabled}>{`${!isAiSearching ? 'Show AI solve' : 'Searching Solution...'}`}
+      <button className="btn" onClick={handleFetchAiSolution} disabled={!isAiSolveEnabled}>{`${!isAiSearching ? 'Show AI solve' : 'Brewing Solution...'}`}
       <div className={`${isAiSearching ? '' : 'hidden'}`}>
       <span className={`loader`}>
         <div className="loader-element"></div>

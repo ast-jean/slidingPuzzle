@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "sliding-puzzle.fullname" . }}-db
+  labels:
+    app: {{ include "sliding-puzzle.name" . }}-db
+spec:
+  replicas: {{ .Values.db.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "sliding-puzzle.name" . }}-db
+  serviceName: {{ include "sliding-puzzle.fullname" . }}-db
+  template:
+    metadata:
+      labels:
+        app: {{ include "sliding-puzzle.name" . }}-db
+    spec:
+      containers:
+      - name: db
+        image: "{{ .Values.db.image.repository }}:{{ .Values.db.image.tag }}"
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        ports:
+          - containerPort: {{ .Values.db.service.port }}
+        env:
+          - name: POSTGRES_USER
+            value: "puzzle_user"
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "sliding-puzzle.fullname" . }}-db-secret
+                key: password
+        volumeMounts:
+          - name: db-data
+            mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: db-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.db.storage }}

@@ -1,0 +1,6 @@
+{{- define "sliding-puzzle.labels" -}}
+app.kubernetes.io/name: {{ include "sliding-puzzle.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/version: {{ .Chart.AppVersion }}
+app.kubernetes.io/managed-by: Helm
+{{- end }}

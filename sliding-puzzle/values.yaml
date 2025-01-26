@@ -1,0 +1,41 @@
+# Global top-level values
+replicaCount: 1
+imagePullPolicy: IfNotPresent
+
+# Frontend service
+frontend:
+  replicaCount: 1
+  image:
+    repository: sliding-puzzle-frontend
+    tag: latest
+  service:
+    port: 8500
+
+# Backend service
+backend:
+  replicaCount: 1
+  image:
+    repository: sliding-puzzle-backend
+    tag: latest
+  service:
+    port: 8510
+
+# Nginx proxy
+nginx:
+  replicaCount: 1
+  image:
+    repository: nginx
+    tag: alpine
+  service:
+    httpPort: 8580
+    httpsPort: 8543
+
+# Database
+db:
+  replicaCount: 1
+  image:
+    repository: postgres
+    tag: "15"
+  service:
+    port: 5532
+  storage: 1Gi
