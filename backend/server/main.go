@@ -1,28 +1,21 @@
 package main
 
 import (
-	"log"
-	"net/http"
-	"time"
-	"../pkg/api"
-	"../pkg/db"
+    "log"
+
+    "github.com/astjean/aislidinggame-backend/pkg/api"
+    "github.com/astjean/aislidinggame-backend/pkg/db"
 )
 
+// main initializes the DB connection and starts the HTTP server.
 func main() {
-    // Initialize database connection
-    db.InitDB()
+    // Initialize the database connection.
+    // Replace the DSN with your actual credentials and DB name.
+    db.InitDB("postgresql://adam:6969@localhost:5432/dbname?sslmode=disable")
+
+    // Ensure the DB is closed when the application exits.
     defer db.CloseDB()
 
-    // Create HTTP server
-    mux := http.NewServeMux()
-    api.RegisterRoutes(mux) // Register API routes
-
-    srv := &http.Server{
-        Addr:              ":8510",
-        Handler:           mux,
-        ReadHeaderTimeout: 5 * time.Second,
-    }
-
-    log.Println("Server running on http://localhost:8510")
-    log.Fatal(srv.ListenAndServe())
+    // Start the HTTP server.
+    log.Fatal(api.StartServer())
 }
